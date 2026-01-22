@@ -1,0 +1,2 @@
+python-socketio[client]
+aiohttp # not automatically installed but needed for socketio

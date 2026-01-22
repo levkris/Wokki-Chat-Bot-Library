@@ -1,0 +1,21 @@
+:root {
+    --pdoc-background: #1f1f1f;
+}
+
+.pdoc {
+    --text: #e0e0e0;
+    --muted: #8c8c8c;
+
+    --link: #c3a3fb;
+    --link-hover: #996df7;
+    --code: #000000;
+    --active: #1a1a1a;
+
+    --accent: #333333;
+    --accent2: #4d4d4d;
+
+    --nav-hover: rgba(26, 26, 26, 0.5);
+    --name: #6A6AFF; /* syntax-highlighting.css -> Name.Function */
+    --def: #7686BB; /* syntax-highlighting.css -> Keyword */
+    --annotation: #CCC;
+}
