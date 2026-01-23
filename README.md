@@ -16,8 +16,24 @@ This library lets you create bots that can send and receive messages, respond to
 Install via pip:
 
 ```bash
-pip install wokki-chat-sdk
+pip install wokki-chat-sdk python-dotenv
 ```
+> We include `python-dotenv` because it helps you securely manage your bot token and other environment variables.
+
+## Using Environment Variables
+Sensitive data like your bot token should not be hardcoded. Use a .env file instead:
+
+1. Create a file named .env in the same folder as your script.
+2. Add your bot token:
+```env
+TOKEN=your_bot_token_here
+```
+3. Load it in python
+```python
+import dotenv, os
+dotenv.load_dotenv()
+```
+Now you can access your token securely using `os.environ["TOKEN"]`.
 
 ## Quick Start
 ```python
