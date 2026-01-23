@@ -95,8 +95,7 @@ main.pdoc {
     }
 
     nav input[type="search"] {
-        width: calc(100% + 20px) !important;
-        margin-left: -20px;
+        max-width: unset !important;
     }
 }
 
