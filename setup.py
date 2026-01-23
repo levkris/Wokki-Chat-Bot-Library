@@ -1,10 +1,18 @@
 from setuptools import setup, find_packages
+from pathlib import Path
+
+this_directory = Path(__file__).parent
+long_description = (this_directory / "README.md").read_text()
 
 setup(
-    name='wokkichat',
-    version='1.0.0',
+    name='wokki-chat-sdk',
+    version='1.0.1',
     description='Python SDK to make bots for Wokki Chat',
-    author='Bjarnos (& wokki20)',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
+    author='Bjarnos & wokki20',
+    url='https://github.com/levkris/Wokki-Chat-Python-SDK',
+    license='Apache-2.0',
     packages=find_packages(include=['wokkichat', 'wokkichat.*']),
     install_requires=[
         'python-socketio[client]',
@@ -12,9 +20,8 @@ setup(
     ],
     python_requires='>=3.6',
     classifiers=[
-        # https://pypi.org/classifiers/
         'Programming Language :: Python :: 3',
-        'Development Status :: 4 - Beta', # TODO 5 - Production/Stable
+        'Development Status :: 4 - Beta',
         'Natural Language :: English',
         'Topic :: Communications :: Chat',
         'Topic :: Software Development :: Libraries :: Python Modules',
@@ -23,5 +30,6 @@ setup(
         'Framework :: AsyncIO',
         'Operating System :: OS Independent',
         'Typing :: Typed',
+        'License :: OSI Approved :: Apache Software License',
     ],
 )

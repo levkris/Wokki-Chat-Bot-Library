@@ -1,0 +1,58 @@
+{% extends "default/module.html.jinja2" %}
+
+{% block head %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://chat.wokki20.nl/assets/styles/developer/main.css">
+    <script>
+        document.documentElement.classList.add("{php-var{theme}}");
+    </script>
+    {{ super() }}
+{% endblock %}
+
+{% block body %}
+    <div class="header">
+        <label id="navtoggle" for="togglestate" class="pdoc-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><path stroke-linecap="round" stroke="currentColor" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></label>
+        <div class="logo">
+            <img src="https://chat.wokki20.nl/assets/images/logo-purple.png" alt="Wokki Chat Logo">
+            <p>For Developers</p>
+        </div>
+        <div class="top-bar-profile" id="top-bar-profile">
+            <img draggable="false" class="top-bar-profile-picture" src="{php-var{profile_picture}}">
+            <p class="top-bar-username">{php-var{username}}</p>
+        </div>
+    </div>
+    {{ super() }}
+    <script>
+        const pdocNav = document.querySelector("nav.pdoc");
+        if (pdocNav) {
+            pdocNav.classList.add("sidebar");
+        }
+        const searchInput = document.querySelector("input[type='search']");
+        if (searchInput) {
+            searchInput.classList.add("input-text-dark-bg");
+        }
+    </script>
+{% endblock %}
+
+{% block nav_title %}
+    <div class="pdoc-sidebar">
+        <a class="sidebar-item" href="/developer/portal">
+            <span class="material-symbols-rounded sidebar-item-icon">home</span>
+            <span class="sidebar-item-text">Portal</span>
+        </a>
+        <a class="sidebar-item" href="/developer/bots">
+            <span class="material-symbols-rounded sidebar-item-icon">smart_toy</span>
+            <span class="sidebar-item-text">Bots</span>
+        </a>
+        <a class="sidebar-item active" href="/developer/docs">
+            <span class="material-symbols-rounded sidebar-item-icon">book_2</span>
+            <span class="sidebar-item-text">Documentation</span>
+        </a>
+    </div>
+{% endblock %}
+
+{% block nav_footer %}
+    <footer>Copyright 2026 Wokki Chat<br>- built with pdoc -</footer>
+{% endblock %}
+
+{% block attribution %}{% endblock %}
