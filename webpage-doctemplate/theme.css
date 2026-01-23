@@ -94,7 +94,7 @@ main.pdoc {
         width: 100% !important;
     }
 
-    input[type="search"] {
+    nav input[type="search"] {
         width: calc(100% + 20px) !important;
         margin-left: -20px;
     }
