@@ -344,14 +344,9 @@ class ctx:
     """
     Special context shared in bot commands.
     """
-
-    command: str
+    command_id: str
     """
-    The name of the used command.
-    """
-    user: "User"
-    """
-    The user that used the command.
+    The id of the command that was used.
     """
     channel: "Channel"
     """
@@ -363,8 +358,7 @@ class ctx:
         @private
         """
         self._bot: Bot = t["bot"]
-        self.command = t["command"]
-        self.user = t["user"]
+        self.command_id = t["command_id"]
         self.channel = t["channel"]
 
     async def reply(self, message: Optional[str] = "", view: Optional[ui.View] = None) -> Optional[Message]:
@@ -376,7 +370,7 @@ class ctx:
         """
         return await self._bot.send_message(
             self.channel.server.id, self.channel.id, message=message, view=view,
-            command=self.command, command_user_id=self.user.id
+            command_id=self.command_id
             )
 
 class Bot:
@@ -447,13 +441,13 @@ class Bot:
         @self._sio.on('bot_command_received') # pyright: ignore[reportOptionalCall]
         async def on_bot_command_received(data: types.JSON):
             c = data.get('command', 'nonexisting')
+            command_id = data.get('command_id', '')
             command = self._commands.get(c[1:])
 
             if command:
                 context = ctx({
-                    "command": c,
                     "bot": self,
-                    "user": await self.get_user(data.get('sent_by_user_id', 0)),
+                    "command_id": command_id,
                     "channel": Channel(self, data.get("server_id", ''), data.get("channel_id", ''))
                 })
                 await command(context, **data.get("options", {}))
@@ -698,7 +692,7 @@ class Bot:
     async def send_message(
             self, server_id: str, channel_id: str, parent_message_id: Optional[str] = None,
             message: Optional[str] = "", view: Optional[ui.View] = None,
-            command: Optional[str] = None, command_user_id: Optional[types.UserId] = None
+            command_id: Optional[str] = None
             ) -> Optional[Message]:
         """
         Low-level implementation to send a message.
@@ -717,8 +711,7 @@ class Bot:
             'parent_message_id': parent_message_id,
             'bot_token': self.bot_token,
             'embed': view.to_list() if view else None,
-            'command': command,
-            'user_id': command_user_id
+            'command_id': command_id
         }
 
         data = await get_response(self, 'send_message', payload=payload, is_special=True)
