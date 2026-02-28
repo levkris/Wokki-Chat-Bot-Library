@@ -21,7 +21,7 @@ it's from our library.
 so don't bother documenting anything which isn't in `__all__`!
 2. pdoc grabs objects in order of appearance in `__all__`.
 3. We use the [reStructuredText](https://www.sphinx-doc.org/en/master/usage/restructuredtext/)
-format to document parameters and the returned object in nested methods.
+format to document parameters and raises in nested methods.
 Do not document types, types are already extracted from the in-code type hints.
 
 ## Building the docs

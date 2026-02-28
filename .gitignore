@@ -2,5 +2,8 @@
 .venv
 test.py
 
+dist
+wokki_chat_sdk.egg-info
+
 __pycache__
 docs
